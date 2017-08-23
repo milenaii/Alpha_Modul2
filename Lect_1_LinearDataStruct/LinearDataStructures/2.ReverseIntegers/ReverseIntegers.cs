@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace _2.ReverseIntegers
 {
+    //Write a program that reads N integers from the console and reverses them using a stack.Use the Stack<int> class.
     class ReverseIntegers
     {
         static void Main()

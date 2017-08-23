@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AD2C0740-B168-4F09-BB04-FF78DB75E889}</ProjectGuid>
+    <ProjectGuid>{376068B2-34A5-4CF4-B23C-9E7CA3DEF498}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>BinarySearch</RootNamespace>
     <AssemblyName>BinarySearch</AssemblyName>
