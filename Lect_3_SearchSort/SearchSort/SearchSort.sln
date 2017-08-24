@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shuffle", "Shuffle\Shuffle.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSort", "QuickSortIteration\MergeSort.csproj", "{83A142EE-CE3F-43DB-8215-C7E22367DF15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sort_BigVic", "Sort_BigVic\Sort_BigVic.csproj", "{32A45EED-BB47-4691-92CB-B8F2C5BD93C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{83A142EE-CE3F-43DB-8215-C7E22367DF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83A142EE-CE3F-43DB-8215-C7E22367DF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83A142EE-CE3F-43DB-8215-C7E22367DF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A45EED-BB47-4691-92CB-B8F2C5BD93C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A45EED-BB47-4691-92CB-B8F2C5BD93C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A45EED-BB47-4691-92CB-B8F2C5BD93C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A45EED-BB47-4691-92CB-B8F2C5BD93C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

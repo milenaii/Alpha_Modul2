@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace QuickSort
 {
-    class QuickSort
+    public class QuickSort
     {
-        static void Main()
+        public static void Main()
         {
-            List<int> nums = new List<int>() { 8, 2, 4, 3, 15, 5, 8, 9, 49 };
+            List<int> nums = new List<int>() { 8, 2, 4, 3 };
             List<int> numsSort = new List<int>();
 
             var sorted = QuickSortRecursive(nums);
+
             for (int i = 0; i < sorted.Count; i++)
             {
                 Console.Write(sorted[i] + " ");
             }
-            //Print
-            //numsSort.ForEach(x => Console.Write(x + " "));
         }
 
         public static List<int> QuickSortRecursive(List<int> nums)
@@ -29,14 +28,19 @@ namespace QuickSort
                 return nums;
             }
 
-            int pivot = FindPivotElement(nums);
+            int pivotIndex = FindPivotElement(nums);   //return IndexPivot
 
             List<int> left = new List<int>();
             List<int> right = new List<int>();
 
-            for (int i = 0; i < nums.Count - 1; i++)
+            for (int i = 0; i < nums.Count; i++) // b/e we take away the Pivot element
             {
-                if (nums[i] <= pivot)
+                if (i == pivotIndex)
+                {
+                    continue;
+                }
+
+                if (nums[i] < nums[pivotIndex])
                 {
                     left.Add(nums[i]);
                 }
@@ -45,21 +49,13 @@ namespace QuickSort
                     right.Add(nums[i]);
                 }
             }
-            //if (left.Count == 1)
-            //{
-            //    return left;
-            //}
-            //if (right.Count == 1)
-            //{
-            //    return right;
-            //}
-
+            
             left = QuickSortRecursive(left);
             right = QuickSortRecursive(right);
 
             List<int> result = new List<int>();
             result.AddRange(left);
-            result.Add(pivot);
+            result.Add(nums[pivotIndex]);
             result.AddRange(right);
 
             return result;
@@ -73,16 +69,20 @@ namespace QuickSort
             int middleElem = nums[nums.Count / 2];
             int lastElem = nums[nums.Count - 1];
             int pivotElem;
+            int indexPivot;
 
             if (firstElem >= lastElem && firstElem >= middleElem)   // first is biggest
             {
                 if (lastElem >= middleElem)
                 {
                     pivotElem = lastElem;
+                    indexPivot = nums.Count - 1;
                 }
                 else
                 {
                     pivotElem = middleElem;
+                    indexPivot = nums.Count / 2;
+
                 }
             }
             else if (middleElem >= firstElem && middleElem >= lastElem)   // middle is biggest
@@ -90,10 +90,14 @@ namespace QuickSort
                 if (firstElem > lastElem)
                 {
                     pivotElem = firstElem;
+                    indexPivot = 0;
+
                 }
                 else
                 {
                     pivotElem = lastElem;
+                    indexPivot = nums.Count - 1;
+
                 }
             }
             else  // last is biggest
@@ -101,13 +105,16 @@ namespace QuickSort
                 if (middleElem > firstElem)
                 {
                     pivotElem = firstElem;
+                    indexPivot = 0;
+
                 }
                 else
                 {
                     pivotElem = middleElem;
+                    indexPivot = nums.Count / 2;
                 }
             }
-            return (pivotElem);
+            return (indexPivot);
         }
     }
 }
