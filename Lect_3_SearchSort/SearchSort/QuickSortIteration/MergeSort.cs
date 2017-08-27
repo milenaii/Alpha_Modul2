@@ -22,23 +22,23 @@ namespace QuickSortIteration
                 return nums;
             }
 
-            List<int> left = nums.Take(nums.Count / 2).ToList();
-            List<int> right = nums.Skip(nums.Count / 2).ToList();
-            //List<int> left = new List<int>();
-            //List<int> right = new List<int>();
+            //List<int> left = nums.Take(nums.Count / 2).ToList();
+            //List<int> right = nums.Skip(nums.Count / 2).ToList();
+            List<int> left = new List<int>();
+            List<int> right = new List<int>();
 
-            //for (int i = 0; i < nums.Count; i++)
+            for (int i = 0; i < nums.Count; i++)
 
-            //{
-            //    if (i <= nums.Count / 2)
-            //    {
-            //        left.Add(nums[i]);
-            //    }
-            //    else
-            //    {
-            //        right.Add(nums[i]);
-            //    }
-            //}
+            {
+                if (i < nums.Count / 2)
+                {
+                    left.Add(nums[i]);
+                }
+                else
+                {
+                    right.Add(nums[i]);
+                }
+            }
 
             left = MergeSort(left);
             right = MergeSort(right);
