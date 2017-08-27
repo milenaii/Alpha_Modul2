@@ -7,45 +7,51 @@ using System.Threading.Tasks;
 
 namespace DFS
 {
-    class DFSs
+    public class DFSs
     {
-        static void Main()
+        public static void Main()
         {
-            //graph creation
+            HashSet<int> visited = new HashSet<int>();
+
+            //graph 
             int[,] graph = new int[,]
             {
                 { 1, 2, 3 },
-                { 4, 5, 6 }
+                { 4, 5, 6 },
             };
-            DFS(graph);
-        }
 
-        private static void DFS(int[,] graph)
-        {
-            Stack stack = new Stack();
-            //DFS + fill visited 
-            int[,] visited = new int[graph.GetLength(0), graph.GetLength(1)];
+            DFS(1);         // dfs is calling with input parameter
 
-            for (int c = 0; c < graph.GetLength(1); c++)
+            void DFS(int node)
             {
-                for (int r = 0; r < graph.GetLength(0); r++)
+                Stack stack = new Stack();
+
+                stack.Push(node);
+                visited.Add(node);
+
+                for (int c = 0; c < graph.GetLength(1); c++)
                 {
-                    if (visited[r, c] == 1)
+                    for (int r = 0; r < graph.GetLength(0); r++)
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        // Console.WriteLine(graph[r, c]);
-                        stack.Push(graph[r, c]);
-                        visited[r, c] = 1;
+                        if (visited[r, c] == 1)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            // Console.WriteLine(graph[r, c]);
+                            stack.Push(graph[r, c]);
+                            visited[r, c] = graph[r, c];
+                            Console.WriteLine(visited[r, c]);
+                        }
                     }
                 }
-            }
-            //Print visited
-            foreach (var vis in visited)
-            {
-                Console.WriteLine(vis);
+                //Print visited
+                foreach (var vis in visited)
+                {
+                    Console.WriteLine(vis);
+                }
+
             }
         }
     }
