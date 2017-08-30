@@ -33,7 +33,7 @@ namespace BFSGraphMatrix
             // Bfs("sofiq");
             int countOfComponents = 0;
 
-            foreach (string key in graph)
+            foreach (var key in graph)
             {
                 if (!visited.Contains(key))
                 {
