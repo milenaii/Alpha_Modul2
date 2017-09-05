@@ -1,0 +1,19 @@
+1.Dictionary
+  -ContainsKey ==> slow 0(n)
+2.SortedDictionary 
+(Only when need sorted, else normal have better performerce)
+  -Add/Find/Delete ===>log2(n)
+3.Set--no duplicates
+4.SortedSet-(red-black tree)
+  -Increasing order
+5.Hash Tables
+   -add/find/delete ==> 0(1)
+   -UnionWith(set)
+   -IntersectWith(set)
+POWER COLLECTION
+1.Bag<Ò>
+  -Add/Find/Remove ==>0(1)
+  -T should provide Equals() and GetHashCode()
+2.OrderedBag<T>
+  -Add/Find/Remove ==>0(log(n))
+  -T should implement IComperable<T>

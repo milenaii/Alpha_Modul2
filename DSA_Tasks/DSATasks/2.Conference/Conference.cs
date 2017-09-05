@@ -74,7 +74,7 @@ namespace _2.Conference
 
         }
 
-        //DFSRec with counter for topological sorting
+        //DFSRec with counter for topological sorting // CONNECTIVITY
         public static int DFSRec(int startNode, Dictionary<int, HashSet<int>> graph, bool[] visited)
         {
             int result = 0;

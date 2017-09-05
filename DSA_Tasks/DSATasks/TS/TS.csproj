@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23501F45-F2D7-4C87-AE8D-E196B0F17B99}</ProjectGuid>
+    <ProjectGuid>{658FF213-858F-4A21-B4F4-95B147CCED2D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TopolSortDFSList</RootNamespace>
-    <AssemblyName>TopolSortDFSList</AssemblyName>
+    <RootNamespace>TS</RootNamespace>
+    <AssemblyName>TS</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TopSortDFSList.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ namespace _3.PlayerRanking
         static void Main()
         {
             BigList<Player> playerRankList = new BigList<Player>();
+
             Dictionary<string, OrderedSet<Player>> players = new Dictionary<string, OrderedSet<Player>>();
 
             //По този начин -> безкраен цикъл

@@ -15,7 +15,7 @@ namespace Pr
         //1           0 1 0       0 -> 1
         //1           0 1 0       1 -> 1
         //2           0 0 1       2 -> 2
-        //                  row -> inptu
+        //                  row -> input
         public static void Main()
         {
             int nodes = int.Parse(Console.ReadLine());

@@ -61,9 +61,11 @@ namespace UnitOfWork
                     case "remove":
                         string nameRemove = commandsParams[1];
                         string typeRemove = "";
+                        //int countDel = 0;
 
                         if (searchedName.ContainsKey(nameRemove))
                         {
+                          //  countDel++;
                             typeRemove = searchedName[nameRemove];
                             searchedName.Remove(nameRemove);
                             Console.WriteLine("SUCCESS: {0} removed!", nameRemove);

@@ -35,7 +35,7 @@ namespace BFSGraphMatrix
 
             foreach (var key in graph)
             {
-                if (!visited.Contains(key))
+                if (!visited.Contains(graph[key]))
                 {
                     Bfs(key);
                     countOfComponents = 0;
