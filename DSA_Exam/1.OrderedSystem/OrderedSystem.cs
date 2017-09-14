@@ -5,148 +5,139 @@ using System.Text;
 using System.Threading.Tasks;
 using Wintellect.PowerCollections;
 
-namespace _1.OrderedSystem
+namespace playerRanking
 {
-    // 1 -> == -1 в Compare, презаписваха се Ivan 1 и 3
-    // 2 -> не бях изтрила ключа - ред 66 - изход - празен ред след втория findConsumer
-    public class OrderedSystem
+    class Program
     {
-        public static void Main()
+
+        static void Main(string[] args)
         {
-            //        consumer , Order
-            Dictionary<string, OrderedSet<Order>> dic = new Dictionary<string, OrderedSet<Order>>();
+            Dictionary<string, OrderedBag<Order>> consumerToMap = new Dictionary<string, OrderedBag<Order>>();
+            OrderedDictionary<double, List<Order>> priceToMap = new OrderedDictionary<double, List<Order>>();
 
-            //         price,  consumer
-            OrderedSet<Order> findByPrice = new OrderedSet<Order>();
+            int numberOfTurns = int.Parse(Console.ReadLine());
 
-            int n = int.Parse(Console.ReadLine());
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < numberOfTurns; i++)
             {
-                string input = Console.ReadLine();
-                int ind = input.IndexOf(' ');
-                string command = input.Substring(0, ind);
+                string[] commandLine = Console.ReadLine().Split(new[] { ' ' }, 2).ToArray();
 
-                string rest = input.Substring(ind + 1, input.Length - 1 - ind);
-
-                string[] characters = rest.Split(';').ToArray();
-
-                switch (command)
+                switch (commandLine[0])
                 {
                     case "AddOrder":
-                        //name; price; consumer
-                        string name = characters[0];
-                        double price = double.Parse(characters[1]);
-                        string consumer = characters[2];
+                        string[] addDetails = commandLine[1].Split(';');
 
-                        Order order = new Order();
-                        order.Name = name;
-                        order.Consumer = consumer;
-                        order.Price = price;
+                        string name = addDetails[0];
+                        double price = double.Parse(addDetails[1]);
+                        string consumer = addDetails[2];
+                        Order order = new Order(name, consumer, price);
 
-                        if (!dic.ContainsKey(consumer))
+                        if (!priceToMap.ContainsKey(price))
                         {
-                            dic.Add(consumer, new OrderedSet<Order>());
+                            priceToMap.Add(price, new List<Order>());
+                        }
+                        priceToMap[price].Add(order);
+
+                        if (!consumerToMap.ContainsKey(consumer))
+                        {
+                            consumerToMap.Add(consumer, new OrderedBag<Order>());
                         }
 
-                        findByPrice.Add(order);
-                        dic[consumer].Add(order);
+                        consumerToMap[consumer].Add(order);
 
                         Console.WriteLine("Order added");
                         break;
 
                     case "DeleteOrders":
-                        string consumerDel = characters[0];
-                        if (dic.ContainsKey(consumerDel))
+
+                        if (consumerToMap.ContainsKey(commandLine[1]))
                         {
-                            int x = dic[consumerDel].Count();
+                            OrderedBag<Order> subset = consumerToMap[commandLine[1]];
+                            foreach (Order set in subset)
+                            {
+                                priceToMap[set.Price].Remove(set);
+                            }
+                            consumerToMap.Remove(commandLine[1]);
 
-                            // delete values
-                            dic[consumerDel].RemoveAll(o => o.Consumer == consumerDel);
-                            //delete key
-                            dic.Remove(consumerDel);
-                            findByPrice.RemoveAll(o => o.Consumer == consumerDel);
-
-                            Console.WriteLine("{0} orders deleted", x);
+                            Console.WriteLine(subset.Count + " orders deleted");
                         }
                         else
                         {
                             Console.WriteLine("No orders found");
                         }
-
                         break;
 
                     case "FindOrdersByPriceRange":
-                        double fromPrice = double.Parse(characters[0]);
-                        double toPrice = double.Parse(characters[1]);
+                        string[] priceDetails = commandLine[1].Split(';');
 
-                        var fPrice = findByPrice.Where(f => f.Price >= fromPrice && f.Price <= toPrice);
-                        int has = fPrice.Count();
+                        double min = double.Parse(priceDetails[0]);
+                        double max = double.Parse(priceDetails[1]);
 
-                        if (has == 0)
+                        OrderedBag<Order> priceBetweenMinMax = new OrderedBag<Order>();
+
+                        foreach (var items in priceToMap.Range(min, true, max, true).Values)
                         {
-                            Console.WriteLine("No orders found");
+                            foreach (var item in items)
+                            {
+                                priceBetweenMinMax.Add(item);
+                            }
                         }
-                        else
+
+                        if (priceBetweenMinMax.Any())
                         {
-                            foreach (var item in fPrice)
+                            foreach (Order item in priceBetweenMinMax)
                             {
                                 Console.WriteLine(item);
                             }
                         }
-                        break;
-                    case "FindOrdersByConsumer":
-                        string consumerFind = characters[0];
-
-                        if (!dic.ContainsKey(consumerFind))
+                        else
                         {
                             Console.WriteLine("No orders found");
                         }
+
+                        break;
+
+                    case "FindOrdersByConsumer":
+                        if (consumerToMap.ContainsKey(commandLine[1]))
+                        {
+                            foreach (Order purchase in consumerToMap[commandLine[1]])
+                            {
+                                Console.WriteLine(purchase);
+                            }
+                        }
                         else
                         {
-                           Console.WriteLine(string.Join("\n", dic[consumerFind]));
+                            Console.WriteLine("No orders found");
                         }
                         break;
                 }
             }
-
-
-
         }
-
-    }
-
-    public class Order : IComparable<Order>
-    {
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string Consumer { get; set; }
-
-        public int CompareTo(Order other)
+        public class Order : IComparable<Order>
         {
-            //1 way
+            public string Name { get; set; }
 
-            //int result;
-            //result = this.Name.CompareTo(other.Name);
-            //if (result == 0)
-            //{
-            //    result = this.Consumer.CompareTo(other.Consumer);
-            //    if (result == 0)
-            //    {
-            //        result = this.Price.CompareTo(other.Price);
-            //    }
-            //}
-            //return result;
+            public string Consumer { get; set; }
 
-            //2 way
-           return this.ToString().CompareTo(other.ToString());
-        }
+            public double Price { get; set; }
 
-        public override string ToString()
-        {
-            string product = string.Format("{0};{1};{2:00.00}", this.Name, this.Consumer, this.Price);
-            product = "{" + product + "}";
-            return product;
+            public Order(string name, string consumer, double productPrice)
+            {
+                this.Consumer = consumer;
+                this.Price = productPrice;
+                this.Name = name;
+            }
+
+            public int CompareTo(Order otherProduct)
+            {
+                int result = this.Name.CompareTo(otherProduct.Name);
+                return result;
+            }
+
+            public override string ToString()
+            {
+                string result = string.Format("{0};{1};{2:0.00}", this.Name, this.Consumer, this.Price);
+                return "{" + result + "}";
+            }
         }
     }
 }
-
