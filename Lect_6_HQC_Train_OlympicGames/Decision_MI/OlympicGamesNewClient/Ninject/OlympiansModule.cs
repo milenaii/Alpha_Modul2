@@ -23,6 +23,22 @@ namespace OlympicGamesNewClient.Ninject
             this.Bind<IOlympicCommittee>().To<OlympicCommittee>().InSingletonScope();
             this.Bind<IOlympicsFactory>().To<OlympicsFactory>().InSingletonScope();
 
+            //for decorator start
+            bool isTestEnvironment = bool.Parse(ConfigurationManager.AppSettings["IsTestEnvironment"]);
+            if (isTestEnvironment)
+            {
+                this.Bind<ICommand>().To<ListOlympiansCommand>().Named("InternalListCommand");
+                this.Bind<ICommand>()
+                    .To<LoggerCommandDecorator>()
+                    .Named("listolympians")
+                    .WithConstructorArgument(this.Kernel.Get<ICommand>("InternalListCommand"));
+            }
+            else
+            {
+                this.Bind<ICommand>().To<ListOlympiansCommand>().Named("listolympians");
+            }
+            // for Decorator end
+
             this.Bind<ICommand>().To<CreateBoxerCommand>().Named("createboxer");
             this.Bind<ICommand>().To<CreateSprinterCommand>().Named("createsprinter");
             this.Bind<ICommand>().To<ListOlympiansCommand>().Named("listolympians");
