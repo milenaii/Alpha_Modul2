@@ -1,15 +1,10 @@
 ﻿using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Traveller.Core;
-using Traveller.Core.Contracts;
-using Traveller.Core.Providers;
-using Traveller.Core.Factories;
 using Traveller.Commands.Contracts;
 using Traveller.Commands.Creating;
+using Traveller.Core;
+using Traveller.Core.Contracts;
+using Traveller.Core.Factories;
+using Traveller.Core.Providers;
 
 namespace Traveller.Ninject
 {
@@ -23,7 +18,7 @@ namespace Traveller.Ninject
 
             this.Bind<IEngine>().To<Engine>().InSingletonScope();
 
-            this.Bind<ICommand>().To<CreateAirplaneCommand>().Named("createairplain");
+            this.Bind<ICommand>().To<CreateAirplaneCommand>().Named("createairplane");
             this.Bind<ICommand>().To<CreateBusCommand>().Named("createbus");
             this.Bind<ICommand>().To<CreateJourneyCommand>().Named("createjourney");
             this.Bind<ICommand>().To<CreateTicketCommand>().Named("createticket");

@@ -24,9 +24,20 @@ namespace Traveller.Commands.Creating
             this.factory = factory;
         }
 
-        public IDatabase Database { get; }
-        public ITravellerFactory Factory { get; }
-
+        public IDatabase Database
+        {
+            get
+            {
+                return this.database;
+            }
+        }
+        public ITravellerFactory Factory
+        {
+            get
+            {
+                return this.factory;
+            }
+        }
 
         public string Execute(IList<string> parameters)
         {

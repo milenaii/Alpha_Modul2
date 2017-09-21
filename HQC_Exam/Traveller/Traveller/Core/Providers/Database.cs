@@ -22,10 +22,27 @@ namespace Traveller.Core.Providers
             this.ticket = new List<ITicket>();
 
         }
-        public IList<IVehicle> Vehicle { get; }
+        public IList<IVehicle> Vehicle
+        {
+            get
+            {
+                return this.vehicle;
+            }
+        }
+        public IList<IJourney> Journey
+        {
+            get
+            {
+                return this.journey;
+            }
+        }
 
-        public IList<IJourney> Journey { get; }
-
-        public IList<ITicket> Ticket { get; }
+        public IList<ITicket> Ticket
+        {
+            get
+            {
+                return this.ticket;
+            }
+        }
     }
 }

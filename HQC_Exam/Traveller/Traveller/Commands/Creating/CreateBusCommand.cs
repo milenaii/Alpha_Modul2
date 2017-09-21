@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using Traveller.Commands.Contracts;
 using Traveller.Core;
@@ -8,36 +9,36 @@ using Traveller.Models.Vehicles.Abstractions;
 
 namespace Traveller.Commands.Creating
 {
-    public class CreateBusCommand : CreateVehicleCommand, ICommand
+    public class CreateBusCommand : ICommand
     {
+        private readonly IDatabase database;
+        private readonly ITravellerFactory factory;
 
-        public CreateBusCommand(IDatabase database, ITravellerFactory travellerFactory)
-            : base(database, travellerFactory)
+        public CreateBusCommand(IDatabase database, ITravellerFactory factory)
         {
+            Guard.WhenArgument(database, "database").IsNull().Throw();
+            Guard.WhenArgument(factory, "travellerFactory").IsNull().Throw();
 
+            this.database = database;
+            this.factory = factory;
         }
-        //public string Execute(IList<string> parameters)
+
+        //public IDatabase Database
         //{
-        //    int passengerCapacity;
-        //    decimal pricePerKilometer;
-
-        //    try
+        //    get
         //    {
-        //        passengerCapacity = int.Parse(parameters[0]);
-        //        pricePerKilometer = decimal.Parse(parameters[1]);
+        //        return this.database;
         //    }
-        //    catch
+        //}
+        //public ITravellerFactory Factory 
+        //{
+        //    get
         //    {
-        //        throw new ArgumentException("Failed to parse CreateBus command parameters.");
+        //        return this.factory;
         //    }
-
-        //    var bus = TravellerFactory.Instance.CreateBus(passengerCapacity, pricePerKilometer);
-        //    Engine.Instance.Vehicles.Add(bus);
-
-        //    return $"Vehicle with ID {Engine.Instance.Vehicles.Count - 1} was created.";
         //}
 
-        protected override string CreateVehicle(IList<string> parameters)
+        public string Execute(IList<string> parameters)
         {
             int passengerCapacity;
             decimal pricePerKilometer;
@@ -52,10 +53,31 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateBus command parameters.");
             }
 
-            var bus = this.Factory.CreateBus(passengerCapacity, pricePerKilometer);
-            this.Database.Vehicle.Add(bus);
+            var bus = this.factory.CreateBus(passengerCapacity, pricePerKilometer);
+            this.database.Vehicle.Add(bus);
 
-            return $"Vehicle with ID {this.Database.Vehicle.Count - 1} was created.";
+            return $"Vehicle with ID {this.database.Vehicle.Count - 1} was created.";
         }
+
+        //protected override string CreateVehicle(IList<string> parameters)
+        //{
+        //    int passengerCapacity;
+        //    decimal pricePerKilometer;
+
+        //    try
+        //    {
+        //        passengerCapacity = int.Parse(parameters[0]);
+        //        pricePerKilometer = decimal.Parse(parameters[1]);
+        //    }
+        //    catch
+        //    {
+        //        throw new ArgumentException("Failed to parse CreateBus command parameters.");
+        //    }
+
+        //    var bus = this.Factory.CreateBus(passengerCapacity, pricePerKilometer);
+        //    this.Database.Vehicle.Add(bus);
+
+        //    return $"Vehicle with ID {this.Database.Vehicle.Count - 1} was created.";
+        //}
     }
 }

@@ -9,38 +9,35 @@ using Traveller.Models.Vehicles.Abstractions;
 
 namespace Traveller.Commands.Creating
 {
-    public class CreateAirplaneCommand : CreateVehicleCommand, ICommand
+    public class CreateAirplaneCommand : ICommand
     {
-        public CreateAirplaneCommand(IDatabase database, ITravellerFactory travellerFactory)
-            : base(database, travellerFactory)
+        private readonly IDatabase database;
+        private readonly ITravellerFactory factory;
+
+        public CreateAirplaneCommand(IDatabase database, ITravellerFactory factory)
         {
+            Guard.WhenArgument(database, "database").IsNull().Throw();
+            Guard.WhenArgument(factory, "factory").IsNull().Throw();
 
+            this.database = database;
+            this.factory = factory;
         }
-
-        //public string Execute(IList<string> parameters)
+        //public IDatabase Database
         //{
-        //int passengerCapacity;
-        //decimal pricePerKilometer;
-        //bool hasFreeFood;
-
-        //try
-        //{
-        //    passengerCapacity = int.Parse(parameters[0]);
-        //    pricePerKilometer = decimal.Parse(parameters[1]);
-        //    hasFreeFood = bool.Parse(parameters[2]);
+        //    get
+        //    {
+        //        return this.database;
+        //    }
         //}
-        //catch
+        //public ITravellerFactory Factory
         //{
-        //    throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
+        //    get
+        //    {
+        //        return this.factory;
+        //    }
         //}
 
-        //var airplane = travellerFactory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
-        //database.Vehicle.Add(airplane);
-
-        //return $"Vehicle with ID {database.Vehicle.Count - 1} was created.";
-        // }
-
-        protected override string CreateVehicle(IList<string> parameters)
+        public string Execute(IList<string> parameters)
         {
             int passengerCapacity;
             decimal pricePerKilometer;
@@ -57,10 +54,33 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
             }
 
-            var airplane = this.Factory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
-            this.Database.Vehicle.Add(airplane);
+            var airplane = this.factory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
+            database.Vehicle.Add(airplane);
 
-            return $"Vehicle with ID {this.Database.Ticket.Count} was created.";
+            return $"Vehicle with ID {database.Vehicle.Count - 1} was created.";
         }
+
+        //protected override string CreateVehicle(IList<string> parameters)
+        //{
+        //    int passengerCapacity;
+        //    decimal pricePerKilometer;
+        //    bool hasFreeFood;
+
+        //    try
+        //    {
+        //        passengerCapacity = int.Parse(parameters[0]);
+        //        pricePerKilometer = decimal.Parse(parameters[1]);
+        //        hasFreeFood = bool.Parse(parameters[2]);
+        //    }
+        //    catch
+        //    {
+        //        throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
+        //    }
+
+        //    var airplane = this.Factory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
+        //    this.Database.Vehicle.Add(airplane);
+
+        //    return $"Vehicle with ID {this.Database.Ticket.Count} was created.";
+        //}
     }
 }
