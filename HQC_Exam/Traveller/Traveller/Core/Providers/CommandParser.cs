@@ -36,16 +36,16 @@ namespace Traveller.Core.Providers
             //return command;
         }
 
-        //public IList<string> ParseParameters(string fullCommand)
-        //{
-        //    var commandParts = fullCommand.Split().Skip(1).ToList();
-        //    if (commandParts.Count == 0)
-        //    {
-        //        return new List<string>();
-        //    }
+        public IList<string> ParseParameters(string fullCommand)
+        {
+            var commandParts = fullCommand.Split().Skip(1).ToList();
+            if (commandParts.Count == 0)
+            {
+                return new List<string>();
+            }
 
-        //    return commandParts;
-        //}
+            return commandParts;
+        }
 
         //private TypeInfo FindCommand(string commandName)
         //{

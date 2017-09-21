@@ -17,6 +17,8 @@ namespace Traveller.Ninject
     {
         public override void Load()
         {
+            this.Bind<IReader>().To<Reader>();
+            this.Bind<IWriter>().To<Writer>();
             this.Bind<ICommandParser>().To<CommandParser>().InSingletonScope();
 
             this.Bind<IEngine>().To<Engine>().InSingletonScope();

@@ -62,6 +62,8 @@
     <Compile Include="Core\Contracts\ICommandParser.cs" />
     <Compile Include="Core\Contracts\IDatabase.cs" />
     <Compile Include="Core\Contracts\IEngine.cs" />
+    <Compile Include="Core\Contracts\IReader.cs" />
+    <Compile Include="Core\Contracts\IWriter.cs" />
     <Compile Include="Core\Factories\CommandFactory.cs" />
     <Compile Include="Core\Factories\ICommandFactory.cs" />
     <Compile Include="Core\Factories\ITravellerFactory.cs" />
@@ -70,6 +72,8 @@
     <Compile Include="Core\Providers\DateTimeProvider.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Providers\CommandParser.cs" />
+    <Compile Include="Core\Providers\Reader.cs" />
+    <Compile Include="Core\Providers\Writer.cs" />
     <Compile Include="Models\Abstractions\IJourney.cs" />
     <Compile Include="Models\Abstractions\ITicket.cs" />
     <Compile Include="Models\Ticket.cs" />

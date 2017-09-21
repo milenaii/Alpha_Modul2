@@ -22,12 +22,19 @@ namespace Traveller.Core
         //private readonly List<ITicket> tickets;
 
         private StringBuilder Builder = new StringBuilder();
+        private readonly ICommandParser parser;
+        private readonly IReader reader;
+        private readonly IWriter writer;
 
-        public Engine(/*List<IVehicle> vehicle, List<IJourney> journeys, List<ITicket> tickets*/)
+        public Engine(ICommandParser parser,  IWriter writer, IReader reader)
         {
-            //this.vehicles = vehicle;
-            //this.journeys = journeys;
-            //this.tickets = tickets;
+            Guard.WhenArgument(parser, "parser").IsNull().Throw();
+            Guard.WhenArgument(writer, "writer").IsNull().Throw();
+            Guard.WhenArgument(reader, "reader").IsNull().Throw();
+
+            this.parser = parser;
+            this.reader = reader;
+            this.writer = writer;
         }
 
         //public static Engine Instance
@@ -45,7 +52,7 @@ namespace Traveller.Core
         //        return this.vehicles;
         //    }
         //}
-        
+
         //public IList<IJourney> Journeys
         //{
         //    get
@@ -68,11 +75,11 @@ namespace Traveller.Core
             {
                 try
                 {
-                    var commandAsString = Console.ReadLine();
+                    var commandAsString = reader.ReadLine();
 
                     if (commandAsString.ToLower() == TerminationCommand.ToLower())
                     {
-                        Console.Write(this.Builder.ToString());
+                        writer.Write(this.Builder.ToString());
                         break;
                     }
 
@@ -92,9 +99,9 @@ namespace Traveller.Core
                 throw new ArgumentNullException("Command cannot be null or empty.");
             }
 
-            var parser = new CommandParser();
-            var command = parser.ParseCommand(commandAsString);
-            var parameters = parser.ParseParameters(commandAsString);
+            //var parser = new CommandParser();
+            var command = this.parser.ParseCommand(commandAsString);
+            var parameters = this.parser.ParseParameters(commandAsString);
 
             var executionResult = command.Execute(parameters);
             this.Builder.AppendLine(executionResult);
