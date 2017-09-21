@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using Traveller.Commands.Contracts;
 using Traveller.Core;
+using Traveller.Core.Contracts;
 using Traveller.Core.Factories;
 using Traveller.Models;
 using Traveller.Models.Abstractions;
@@ -10,6 +12,22 @@ namespace Traveller.Commands.Creating
 {
     public class CreateTicketCommand : ICommand
     {
+        private readonly IDatabase database;
+        private readonly ITravellerFactory factory;
+
+        public CreateTicketCommand(IDatabase database, ITravellerFactory factory)
+        {
+            Guard.WhenArgument(database, "database").IsNull().Throw();
+            Guard.WhenArgument(factory, "factory").IsNull().Throw();
+
+            this.database = database;
+            this.factory = factory;
+        }
+
+        public IDatabase Database { get; }
+        public ITravellerFactory Factory { get; }
+
+
         public string Execute(IList<string> parameters)
         {
             IJourney journey;
@@ -17,7 +35,7 @@ namespace Traveller.Commands.Creating
 
             try
             {
-                journey = Engine.Instance.Journeys[int.Parse(parameters[0])];
+                journey = this.database.Journey[int.Parse(parameters[0])];
                 administrativeCosts = decimal.Parse(parameters[1]);
             }
             catch
@@ -25,10 +43,10 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateTicket command parameters.");
             }
 
-            var ticket = TravellerFactory.Instance.CreateTicket(journey, administrativeCosts);
-            Engine.Instance.Tickets.Add(ticket);
+            var ticket = this.Factory.CreateTicket(journey, administrativeCosts);
+            this.Database.Ticket.Add(ticket);
 
-            return $"Ticket with ID {Engine.Instance.Tickets.Count - 1} was created.";
+            return $"Ticket with ID {this.Database.Ticket.Count - 1} was created.";
         }
     }
 }

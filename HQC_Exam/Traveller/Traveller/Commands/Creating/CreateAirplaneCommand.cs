@@ -11,39 +11,36 @@ namespace Traveller.Commands.Creating
 {
     public class CreateAirplaneCommand : CreateVehicleCommand, ICommand
     {
-        private readonly IDatabase database;
-        private readonly ITravellerFactory travellerFactory;
-
         public CreateAirplaneCommand(IDatabase database, ITravellerFactory travellerFactory)
-            :base(database, travellerFactory)
+            : base(database, travellerFactory)
         {
-           
+
         }
 
         //public string Execute(IList<string> parameters)
         //{
-            //int passengerCapacity;
-            //decimal pricePerKilometer;
-            //bool hasFreeFood;
+        //int passengerCapacity;
+        //decimal pricePerKilometer;
+        //bool hasFreeFood;
 
-            //try
-            //{
-            //    passengerCapacity = int.Parse(parameters[0]);
-            //    pricePerKilometer = decimal.Parse(parameters[1]);
-            //    hasFreeFood = bool.Parse(parameters[2]);
-            //}
-            //catch
-            //{
-            //    throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
-            //}
+        //try
+        //{
+        //    passengerCapacity = int.Parse(parameters[0]);
+        //    pricePerKilometer = decimal.Parse(parameters[1]);
+        //    hasFreeFood = bool.Parse(parameters[2]);
+        //}
+        //catch
+        //{
+        //    throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
+        //}
 
-            //var airplane = travellerFactory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
-            //database.Vehicle.Add(airplane);
+        //var airplane = travellerFactory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
+        //database.Vehicle.Add(airplane);
 
-            //return $"Vehicle with ID {database.Vehicle.Count - 1} was created.";
-       // }
+        //return $"Vehicle with ID {database.Vehicle.Count - 1} was created.";
+        // }
 
-        protected override IVehicle CreateVehicle(IList<string> parameters)
+        protected override string CreateVehicle(IList<string> parameters)
         {
             int passengerCapacity;
             decimal pricePerKilometer;
@@ -60,10 +57,10 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
             }
 
-            var airplane = travellerFactory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
-            database.Vehicle.Add(airplane);
+            var airplane = this.Factory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
+            this.Database.Vehicle.Add(airplane);
 
-            return $"Vehicle with ID {database.Vehicle.Count - 1} was created.";
+            return $"Vehicle with ID {this.Database.Ticket.Count} was created.";
         }
     }
 }

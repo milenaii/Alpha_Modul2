@@ -17,7 +17,6 @@ namespace Traveller.Commands.Creating
             this.database = database;
         }
 
-
         public string Execute(IList<string> parameters)
         {
             var vehicles = database.Vehicle;

@@ -55,9 +55,11 @@
     <Compile Include="Commands\Creating\CreateTrainCommand.cs" />
     <Compile Include="Commands\Creating\CreateAirplaneCommand.cs" />
     <Compile Include="Commands\Creating\CreateBusCommand.cs" />
+    <Compile Include="Commands\Creating\CreateVehicleCommand.cs" />
     <Compile Include="Commands\Listing\ListJourneysCommand.cs" />
     <Compile Include="Commands\Listing\ListTicketsCommand.cs" />
     <Compile Include="Commands\Listing\ListVehiclesCommand.cs" />
+    <Compile Include="Core\Contracts\ICommandParser.cs" />
     <Compile Include="Core\Contracts\IDatabase.cs" />
     <Compile Include="Core\Contracts\IEngine.cs" />
     <Compile Include="Core\Factories\CommandFactory.cs" />

@@ -13,15 +13,15 @@ namespace Traveller.Commands.Creating
     public abstract  class CreateVehicleCommand : ICommand
     {
         private readonly IDatabase database;
-        private readonly ITravellerFactory travelerFactory;
+        private readonly ITravellerFactory travellerFactory;
 
-        protected CreateVehicleCommand(IDatabase database, ITravellerFactory travelerFactory)
+        protected CreateVehicleCommand(IDatabase database, ITravellerFactory travellerFactory)
         {
-            Guard.WhenArgument(database, "committee").IsNull().Throw();
-            Guard.WhenArgument(travelerFactory, "travelerFactory").IsNull().Throw();
+            Guard.WhenArgument(database, "database").IsNull().Throw();
+            Guard.WhenArgument(travellerFactory, "travellerFactory").IsNull().Throw();
 
             this.database = database;
-            this.travelerFactory = travelerFactory;
+            this.travellerFactory = travellerFactory;
         }
         protected IDatabase Database { get; }
 
@@ -36,7 +36,7 @@ namespace Traveller.Commands.Creating
             return string.Format("Created {0}\n{1}", vehicle.GetType().Name, vehicle);
         }
 
-        protected abstract IVehicle CreateVehicle(IList<string> parameters);
+        protected abstract string CreateVehicle(IList<string> parameters);
 
     }
 }
