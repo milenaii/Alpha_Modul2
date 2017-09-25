@@ -11,7 +11,7 @@ namespace Traveller
         {
             //Engine.Instance.Start();
 
-            IKernel kernel = new StandardKernel(new TravellerModule());
+            IKernel kernel = new StandardKernel(new TravellerModule()); 
             IEngine engine = kernel.Get<IEngine>();
             engine.Start();
         }

@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Ninject;
+using Ninject.Modules;
 using OlympicGames.Core;
 using OlympicGames.Core.Commands;
 using OlympicGames.Core.Contracts;
@@ -6,13 +7,8 @@ using OlympicGames.Core.Factories;
 using OlympicGames.Core.Providers;
 using OlympicGamesNewClient.Decorators;
 using OlympicGamesNewClient.Providers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ninject;
 using System.Configuration;
+
 
 namespace OlympicGamesNewClient.Ninject
 {

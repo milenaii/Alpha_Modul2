@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Traveller.Framework.csproj">
+      <Project>{5dc9b12c-c8ed-40d2-b044-37949e245a75}</Project>
+      <Name>Traveller.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Traveller\Traveller.csproj">
       <Project>{37ba7d68-d803-4820-9586-8efc016c9144}</Project>
       <Name>Traveller</Name>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OlympicGamesNewClient
 {
-    public class Program
+    public class StUpNewClient
     {
         static void Main(string[] args)
         {

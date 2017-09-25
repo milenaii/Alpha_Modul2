@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Decorator\LoggarCommandDecorator.cs" />
     <Compile Include="Ninject\OlympiansModule.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="StUpNewClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\FileWriter.cs" />
   </ItemGroup>

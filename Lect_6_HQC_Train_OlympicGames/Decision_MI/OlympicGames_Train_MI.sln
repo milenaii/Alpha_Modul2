@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "before", "before", "{4CE4FE27-8CF8-4A6B-B47F-527C6FB65EF2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "before_MI", "before_MI", "{4CE4FE27-8CF8-4A6B-B47F-527C6FB65EF2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "after", "after", "{6A1BE4F3-EED5-4967-955F-5CE14E14CFB1}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGamesNewClient", "OlympicGamesNewClient\OlympicGamesNewClient.csproj", "{A18D3936-335B-4FDE-928D-40AD7A3F388D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGames.Framework", "ClassLibrary1\OlympicGames.Framework.csproj", "{67BC5087-CF70-45B2-92B9-861282F120E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGames.Framework.UnitTests", "UnitTestProject1\OlympicGames.Framework.UnitTests.csproj", "{506F341B-BE57-452F-9E85-C298A6EB16C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{67BC5087-CF70-45B2-92B9-861282F120E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67BC5087-CF70-45B2-92B9-861282F120E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67BC5087-CF70-45B2-92B9-861282F120E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506F341B-BE57-452F-9E85-C298A6EB16C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506F341B-BE57-452F-9E85-C298A6EB16C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506F341B-BE57-452F-9E85-C298A6EB16C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506F341B-BE57-452F-9E85-C298A6EB16C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

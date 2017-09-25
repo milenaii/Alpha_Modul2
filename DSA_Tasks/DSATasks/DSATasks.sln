@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeSpaceeee", "OfficeSpa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hadera_office", "Hadera_office\Hadera_office.csproj", "{18E477BF-DFBF-4E3E-AD32-4AA6A6EE8ADF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldFever", "GoldFever\GoldFever.csproj", "{C5DD4E20-1C90-4DE5-99C5-91B77096CD24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppp", "ppp\ppp.csproj", "{02B90E83-FDE6-46F5-AEE4-1D00DC507023}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{18E477BF-DFBF-4E3E-AD32-4AA6A6EE8ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18E477BF-DFBF-4E3E-AD32-4AA6A6EE8ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18E477BF-DFBF-4E3E-AD32-4AA6A6EE8ADF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5DD4E20-1C90-4DE5-99C5-91B77096CD24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5DD4E20-1C90-4DE5-99C5-91B77096CD24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5DD4E20-1C90-4DE5-99C5-91B77096CD24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5DD4E20-1C90-4DE5-99C5-91B77096CD24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B90E83-FDE6-46F5-AEE4-1D00DC507023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B90E83-FDE6-46F5-AEE4-1D00DC507023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B90E83-FDE6-46F5-AEE4-1D00DC507023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B90E83-FDE6-46F5-AEE4-1D00DC507023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

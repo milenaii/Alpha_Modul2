@@ -16,23 +16,6 @@ namespace OlympicGames.Core.Ninject
     {
         public override void Load()
         {
-             //така дава грешка
-
-            //this.Bind<ICommandParser>().To<CommandParser>().InSingletonScope();
-            //this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
-            //this.Bind<IReader>().To<ConsoleReader>();
-            //this.Bind<IWriter>().To<ConsoleWriter>();
-            //this.Bind<IEngine>().To<Engine>().InSingletonScope();
-
-            //this.Bind<IOlympicCommittee>().To<OlympicCommittee>().InSingletonScope();
-            //this.Bind<IOlympicsFactory>().To<IOlympicsFactory>().InSingletonScope();
-
-            //this.Bind<ICommand>().To<CreateBoxerCommand>().Named("createboxer");
-            //this.Bind<ICommand>().To<CreateSprinterCommand>().Named("createsprinter");
-            //this.Bind<ICommand>().To<ListOlympiansCommand>().Named("listolympians");
-
-            //this.Bind<ICommandFactory>().To<CommandFactory>();
-
             this.Bind<ICommandParser>().To<CommandParser>().InSingletonScope();
             this.Bind<ICommandProcessor>().To<CommandProcessor>().InSingletonScope();
             this.Bind<IReader>().To<ConsoleReader>();
